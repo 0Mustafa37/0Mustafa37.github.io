@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Mustafa Mohammed Ali</title>
+<meta name="description" content="Mustafa Mohammed Ali, backend engineer building high-scale Django systems in production.">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #333;
+    background: #fff;
+  }
+  a { color: #0000ee; }
+  hr { border: 0; border-top: 1px solid #ccc; margin: 20px 0; }
+
+  .container { margin: 20px auto 0; padding: 0 15px; }
+  @media (min-width: 992px) { .container { width: 970px; } }
+  .row { display: grid; grid-template-columns: repeat(12, 1fr); }
+
+  /* ---------- header ---------- */
+  #dhead { margin-top: 40px; }
+  #dpic { grid-column: span 4; }
+  #ddesc { grid-column: span 8; padding-top: 50px; }
+  .ppic {
+    width: 240px; height: 240px; border-radius: 120px; object-fit: cover; display: block;
+  }
+  .ppic-ph {
+    width: 240px; height: 240px; border-radius: 120px; position: relative; overflow: hidden;
+    background: #ddd; color: #888; font-size: 72px; display: inline-grid; place-items: center;
+  }
+  .ppic-ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  h1 { font-size: 34px; font-weight: 400; margin: 0; }
+  h2 { font-size: 18px; font-weight: 400; font-style: italic; color: #999; margin: 5px 0 10px; }
+  @media (min-width: 992px) { h2 { max-width: 560px; } }
+  .iicons { display: flex; gap: 6px; flex-wrap: wrap; }
+  .iico {
+    width: 40px; height: 40px; border-radius: 50%; background: #333;
+    display: inline-grid; place-items: center;
+  }
+  .iico:hover { background: #555; }
+  .iico svg { width: 22px; height: 22px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  @media (max-width: 991px) {
+    #dpic { grid-column: span 12; text-align: center; }
+    #dpic .ppic-ph { margin: 0 auto; }
+    #ddesc { grid-column: span 12; padding-top: 20px; text-align: center; }
+    h2 { margin-left: auto; margin-right: auto; }
+    .iicons { justify-content: center; }
+  }
+
+  /* ---------- timeline ---------- */
+  .entry { margin: 0; }
+  .timespan {
+    grid-column: span 1; text-align: right; padding-right: 5px;
+    font-size: 14px; color: #bbb; line-height: 1.4;
+  }
+  .ico { grid-column: span 1; border-left: 1.6px solid #cfcfcf; position: relative; }
+  .entry-dot {
+    position: absolute; left: -7.5px; top: 2px;
+    width: 13px; height: 13px; border-radius: 7px;
+    background: #cfcfcf; border: 1.6px solid #fff;
+  }
+  .logo {
+    position: relative; margin-left: 10px; width: 56px; height: 56px; border-radius: 5px; overflow: hidden;
+    background: #f1f1f1; color: #999; font-size: 14px; font-weight: 700;
+    display: grid; place-items: center;
+  }
+  .logo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #fff; }
+  .desc { grid-column: span 10; font-size: 17px; padding: 0 0 20px 20px; }
+  .desc ul { margin: 12px 0; padding-left: 40px; }
+  .desc li { margin-bottom: 4px; }
+  @media (max-width: 767px) {
+    .entry { grid-template-columns: 46px 58px 1fr; }
+    .timespan, .ico, .desc { grid-column: auto; }
+    .timespan { font-size: 12px; }
+    .desc { font-size: 16px; padding-left: 4px; }
+    .logo { width: 44px; height: 44px; font-size: 12px; }
+    .desc ul { padding-left: 20px; }
+  }
+
+  /* ---------- section titles ---------- */
+  .ctitle { font-size: 36px; margin: 40px 0 20px; }
+
+  /* ---------- gray band of cards ---------- */
+  .band { background: #eee; padding: 1px 0 10px; margin-top: 40px; }
+  .band .ctitle { margin-top: 30px; }
+  .cards { gap: 10px; padding-bottom: 30px; }
+  .card { grid-column: span 4; background: #fff; border-radius: 3px; padding: 5px 5px 10px; }
+  .card a { text-decoration: none; color: inherit; }
+  .ccimg {
+    position: relative; width: 100%; aspect-ratio: 3 / 2; border-radius: 5px; overflow: hidden;
+    background: #ddd; color: #888; display: grid; place-items: center; font-size: 20px;
+  }
+  .ccimg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .cdesc { font-size: 16px; padding: 8px 4px 0; }
+  .cdesc b { font-weight: 600; }
+  .cstack { font-size: 13px; color: #999; padding: 2px 4px 0; }
+  @media (max-width: 991px) { .card { grid-column: span 6; } .cards { gap: 5px; } }
+  @media (max-width: 560px) { .card { grid-column: span 12; } }
+
+  /* ---------- projects (floated thumbnail) ---------- */
+  .project { margin: 0 0 10px; padding: 0 0 10px; }
+  .project::after { content: ""; display: block; clear: both; }
+  .pico {
+    float: left; margin: 0 10px 0 0; position: relative; width: 82px; height: 82px;
+    border-radius: 5px; overflow: hidden; background: #eee; color: #999;
+    display: grid; place-items: center; font-weight: 700;
+  }
+  .pico img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+  /* ---------- highlights list (pub style) ---------- */
+  .pub { border-left: 4px solid #aaa; padding: 2px 0 2px 10px; margin: 0 0 10px; font-size: 14px; }
+  .pub-title { display: inline; }
+  .pub-venue { display: inline; color: #009900; margin-left: 4px; }
+  .pub-authors { color: #666; }
+
+  .misc ul { padding-left: 22px; }
+  .misc li { margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<div class="container" id="dhead">
+  <div class="row">
+    <div id="dpic">
+      <!-- Your photo: assets/me.jpg -->
+      <div class="ppic-ph">MA<img src="assets/me.jpg" alt="Mustafa Mohammed Ali" onerror="this.remove()"></div>
+    </div>
+    <div id="ddesc">
+      <h1>Mustafa Mohammed Ali</h1>
+      <h2>I build backend systems that hold up in production ⚙️🐍📦</h2>
+      <div class="iicons">
+        <!-- TODO: replace YOUR-USERNAME / YOUR-PROFILE -->
+        <a class="iico" href="https://github.com/YOUR-USERNAME" title="GitHub">
+          <svg viewBox="0 0 24 24"><polyline points="8 6 2 12 8 18"/><polyline points="16 6 22 12 16 18"/></svg>
+        </a>
+        <a class="iico" href="https://www.linkedin.com/in/YOUR-PROFILE" title="LinkedIn">
+          <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        </a>
+        <a class="iico" href="mailto:mabdelaal474@gmail.com" title="Email">
+          <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg>
+        </a>
+        <a class="iico" href="assets/Mustafa_Mohammed_Ali_CV.pdf" title="CV (PDF)">
+          <svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><polyline points="14 3 14 8 19 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ================= TIMELINE ================= -->
+<div class="container" id="history">
+
+  <div class="entry row">
+    <div class="timespan">2023 -</div>
+    <div class="ico">
+      <div class="entry-dot"></div>
+      <!-- Company logo: assets/holouly.png -->
+      <div class="logo">HIS<img src="assets/holouly.png" alt="Holouly" onerror="this.remove()"></div>
+    </div>
+    <div class="desc">
+      I'm a <b>Mid-level Backend Developer</b> at <a href="#">Holouly Innovative Solutions</a> in Cairo, where I own backend modules on two live B2B platforms built on Django, DRF, PostgreSQL, Redis and Celery: <b>ETEPS</b> (field service management: ticketing, SLA, inventory, ERP integration) and <b>Mdawm</b> (attendance, live tracking, violation monitoring, CRM integration). Some things I've built and fixed:
+      <ul>
+        <li>Refactored the ticket-closing flow into a service layer with named domain exceptions and thin views.</li>
+        <li>A bulk-resolve API returning HTTP 207 Multi-Status, with per-ticket savepoints so one failure never rolls back the batch.</li>
+        <li>An SLA deadline engine that precomputes deadlines and updates them at write time.</li>
+        <li>Cut ticket-list latency by reading <code>EXPLAIN ANALYZE</code> plans, adding a missing composite index and fixing <code>work_mem</code> issues.</li>
+        <li>Maintain the BAAN/Infor ERP integration and a SQL Server inventory sync; fixed a timeout that stalled sync at ~134K of 221K records.</li>
+      </ul>
+      I also mentor our interns and wrote the Django internship training plan and onboarding roadmap.
+    </div>
+  </div>
+
+  <div class="entry row">
+    <div class="timespan">2022 - 2023</div>
+    <div class="ico">
+      <div class="entry-dot"></div>
+      <div class="logo">HIS<img src="assets/holouly.png" alt="Holouly" onerror="this.remove()"></div>
+    </div>
+    <div class="desc">
+      I joined Holouly as a <b>Junior Backend Developer</b>, building and optimizing APIs with the Django ORM, raw SQL and PostgreSQL, and cut response times by 25%. Along the way I contributed to the backend architecture with a focus on security and scalability.
+    </div>
+  </div>
+
+  <div class="entry row">
+    <div class="timespan">2020 - 2024</div>
+    <div class="ico">
+      <div class="entry-dot"></div>
+      <!-- University logo: assets/ainshams.png -->
+      <div class="logo">ASU<img src="assets/ainshams.png" alt="Ain Shams University" onerror="this.remove()"></div>
+    </div>
+    <div class="desc">
+      <b>B.Sc. in Computer Science</b> (Scientific Computing) at Ain Shams University. My graduation project was <a href="#dressmeup">Dress Me Up</a>, a fashion recommender built on YOLOv8 and VGG19 with a Flask backend and a Flutter app.
+    </div>
+  </div>
+
+</div>
+
+<!-- ================= BIO ================= -->
+<div class="container">
+  <div class="ctitle">bio</div>
+  <div>
+    Mustafa Mohammed Ali is a backend engineer based in Cairo with 4+ years building and running high-scale Django systems in production. He owns complex modules end to end on two live B2B enterprise platforms, from ticketing and SLA lifecycles to warehouse serial tracking, ERP integrations and bulk data operations. He tunes queries from execution plans, designs service layers, and mentors interns.
+  </div>
+</div>
+
+<!-- ================= FEATURED PROJECTS (gray band) ================= -->
+<div class="band">
+  <div class="container">
+    <div class="ctitle">featured projects</div>
+    <div class="row cards">
+      <div class="card">
+        <a href="#">
+          <!-- Screenshot: assets/tanzim.png -->
+          <div class="ccimg">Tanzim<img src="assets/tanzim.png" alt="Tanzim" onerror="this.remove()"></div>
+          <div class="cdesc"><b>Tanzim</b>: multi-tenant enterprise SaaS platform</div>
+          <div class="cstack">Django · DRF · React</div>
+        </a>
+      </div>
+      <div class="card">
+        <a href="#">
+          <!-- Screenshot: assets/booclair.png -->
+          <div class="ccimg">Booclair<img src="assets/booclair.png" alt="Booclair" onerror="this.remove()"></div>
+          <div class="cdesc"><b>Booclair</b>: chat and video meetings for book clubs</div>
+          <div class="cstack">Node.js · Flutter · Socket.IO · WebRTC</div>
+        </a>
+      </div>
+      <div class="card" id="dressmeup">
+        <a href="#">
+          <!-- Screenshot: assets/dressmeup.png -->
+          <div class="ccimg">Dress Me Up<img src="assets/dressmeup.png" alt="Dress Me Up" onerror="this.remove()"></div>
+          <div class="cdesc"><b>Dress Me Up</b>: AI fashion recommender</div>
+          <div class="cstack">YOLOv8 · VGG19 · Flask · Flutter</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= PROJECTS (detailed) ================= -->
+<div class="container">
+  <div class="ctitle">projects</div>
+
+  <div class="project">
+    <div class="pico">T<img src="assets/tanzim.png" alt="" onerror="this.remove()"></div>
+    <div class="pdesc">
+      <a href="#">Tanzim</a> is a multi-tenant enterprise SaaS platform I'm building on my own. The backend (Django + DRF) is complete, and the React frontend is in progress.
+    </div>
+  </div>
+
+  <div class="project">
+    <div class="pico">B<img src="assets/booclair.png" alt="" onerror="this.remove()"></div>
+    <div class="pdesc">
+      <a href="#">Booclair</a> brings book clubs online with real-time chat and video meetings, built on Node.js, Socket.IO and WebRTC with a Flutter app. It's live.
+    </div>
+  </div>
+
+  <div class="project">
+    <div class="pico">D<img src="assets/dressmeup.png" alt="" onerror="this.remove()"></div>
+    <div class="pdesc">
+      <a href="#">Dress Me Up</a> was my graduation project: it detects clothing items with YOLOv8, extracts VGG19 features and recommends matching pieces using cosine similarity, served by a Flask backend to a Flutter app.
+    </div>
+  </div>
+</div>
+
+<!-- ================= ENGINEERING HIGHLIGHTS ================= -->
+<div class="container">
+  <div class="ctitle">engineering highlights</div>
+
+  <div class="pub">
+    <div class="pub-title">Bulk-resolve API with HTTP 207 Multi-Status and per-ticket savepoints</div>
+    <div class="pub-venue">ETEPS</div>
+    <div class="pub-authors">Django · DRF · PostgreSQL transactions</div>
+  </div>
+  <div class="pub">
+    <div class="pub-title">SLA deadline engine: precomputed deadlines, updated at write time</div>
+    <div class="pub-venue">ETEPS</div>
+    <div class="pub-authors">Django · Celery · PostgreSQL</div>
+  </div>
+  <div class="pub">
+    <div class="pub-title">Ticket-list latency fix from EXPLAIN ANALYZE plans and a composite index</div>
+    <div class="pub-venue">ETEPS</div>
+    <div class="pub-authors">PostgreSQL query-plan tuning</div>
+  </div>
+  <div class="pub">
+    <div class="pub-title">Serial-number corruption bug traced to deferred fields in bulk_update</div>
+    <div class="pub-venue">Warehouse</div>
+    <div class="pub-authors">Django ORM</div>
+  </div>
+  <div class="pub">
+    <div class="pub-title">SQL Server inventory sync unstuck at 134K of 221K records; SQL injection and N+1 removed</div>
+    <div class="pub-venue">ERP</div>
+    <div class="pub-authors">BAAN/Infor · pyodbc · Celery</div>
+  </div>
+  <div class="pub">
+    <div class="pub-title">Cross-database serial matching and duplicate cleanup tooling</div>
+    <div class="pub-venue">Data</div>
+    <div class="pub-authors">pandas</div>
+  </div>
+</div>
+
+<!-- ================= MISC ================= -->
+<div class="container misc">
+  <div class="ctitle">misc unsorted</div>
+  <ul>
+    <li>Stack I use daily: Python, Django, DRF, PostgreSQL, Redis, Celery, Docker, AWS, Nginx and CI/CD.</li>
+    <li>I also work with Flask, Node.js, RabbitMQ, WebSockets and Socket.IO, and on the ML side PyTorch, scikit-learn and NLTK.</li>
+    <li>I wrote a Django internship training plan and onboarding roadmap for the interns I mentor.</li>
+    <li>I speak Arabic (native) and English (professional).</li>
+    <li>Reach me at <a href="mailto:mabdelaal474@gmail.com">mabdelaal474@gmail.com</a>.</li>
+    <li>This site is pure HTML and CSS in a single static file. No frameworks.</li>
+  </ul>
+</div>
+
+<br><br><br><br><br>
+</body>
+</html>
