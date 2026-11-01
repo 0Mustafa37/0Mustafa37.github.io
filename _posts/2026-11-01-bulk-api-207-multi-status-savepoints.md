@@ -11,6 +11,11 @@ It worked until it didn't. One ticket in a batch of fifty was already closed by 
 
 Here's how I fixed it.
 
+<figure>
+  <img src="/assets/blog/bulk-resolve-savepoints.png" alt="Diagram comparing one transaction for the whole batch with one savepoint per ticket">
+  <figcaption>Left: one failed ticket rolls back the whole batch. Right: each ticket has its own savepoint, so only the failed one rolls back.</figcaption>
+</figure>
+
 ## The problem with all-or-nothing
 
 A single `transaction.atomic()` around the loop gives you all-or-nothing semantics. That's the right call when the items depend on each other, like the lines of one invoice. Resolving fifty unrelated tickets is not that. Each ticket is its own unit of work, so each one should succeed or fail on its own.
