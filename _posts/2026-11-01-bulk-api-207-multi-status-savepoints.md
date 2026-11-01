@@ -3,6 +3,7 @@ layout: post
 title: "One bad ticket shouldn't fail the batch: HTTP 207 and per-item savepoints in Django"
 description: How I built a bulk-resolve endpoint where each item succeeds or fails on its own.
 tags: [django, postgresql, api-design]
+image: /assets/blog/bulk-resolve-savepoints.png
 ---
 
 On ETEPS, our field service platform, support agents often need to close dozens of tickets at once. The first version of our bulk-resolve endpoint did the obvious thing: wrap the whole batch in one transaction and loop.
