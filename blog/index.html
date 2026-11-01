@@ -1,0 +1,20 @@
+---
+layout: blog
+title: Blog
+---
+<div class="ctitle">blog</div>
+<p class="lead">Notes on backend engineering, Django, PostgreSQL, and the bugs that only show up in production.</p>
+
+{% if site.posts.size > 0 %}
+<ul class="plist">
+  {% for post in site.posts %}
+  <li>
+    <div class="pdate">{{ post.date | date: "%b %Y" }}</div>
+    <div class="ptitle"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></div>
+    {% if post.description %}<div class="pex">{{ post.description }}</div>{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="empty">No posts yet.</p>
+{% endif %}

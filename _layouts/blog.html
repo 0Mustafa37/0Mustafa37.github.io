@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if page.title %}{{ page.title }} | {% endif %}Mustafa's blog</title>
+<meta name="description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
+<link rel="stylesheet" href="{{ '/assets/blog.css' | relative_url }}">
+<link rel="alternate" type="application/atom+xml" title="Mustafa's blog" href="{{ '/blog/feed.xml' | relative_url }}">
+</head>
+<body>
+<header class="bhead">
+  <div class="wrap">
+    <img src="{{ '/assets/me.jpg' | relative_url }}" alt="">
+    <a class="name" href="{{ '/' | relative_url }}">Mustafa Mohammed Ali</a>
+    <nav>
+      <a href="{{ '/' | relative_url }}">home</a>
+      <a href="{{ '/blog/' | relative_url }}">blog</a>
+      <a href="{{ '/blog/feed.xml' | relative_url }}">rss</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+{{ content }}
+</main>
+</body>
+</html>

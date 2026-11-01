@@ -1,0 +1,20 @@
+title: Mustafa Mohammed Ali
+description: Notes on backend engineering, Django, PostgreSQL and building systems that hold up in production.
+author: Mustafa Mohammed Ali
+url: "https://0mustafa37.github.io"
+baseurl: ""
+
+permalink: /blog/:year/:month/:day/:title/
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+timezone: Africa/Cairo
+
+plugins:
+  - jekyll-feed
+feed:
+  path: blog/feed.xml
+
+exclude:
+  - README.md
