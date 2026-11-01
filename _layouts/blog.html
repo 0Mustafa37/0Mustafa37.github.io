@@ -1,25 +1,22 @@
 <!doctype html>
-<html lang="en" data-theme="pixel">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% if page.title %}{{ page.title }} | {% endif %}Mustafa's blog</title>
 <meta name="description" content="{{ page.description | default: page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
-<script>
-  // Remember the visitor's theme choice (pixel is the default)
-  try {
-    var t = localStorage.getItem('blog-theme');
-    if (t === 'classic' || t === 'pixel') document.documentElement.setAttribute('data-theme', t);
-  } catch (e) {}
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ '/assets/blog.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 <link rel="alternate" type="application/atom+xml" title="Mustafa's blog" href="{{ '/blog/feed.xml' | relative_url }}">
 </head>
 <body>
-<div class="sky" aria-hidden="true"></div>
+{% assign s = '/assets/blog/sprites/' | relative_url %}
+<!-- sky: drifting clouds and a bird (decorative) -->
+<div class="sky" aria-hidden="true">
+  <img class="cloud c1" src="{{ s }}cloud.svg" alt="">
+  <img class="cloud c2" src="{{ s }}cloud.svg" alt="">
+  <img class="cloud c3" src="{{ s }}cloud.svg" alt="">
+  <img class="bird" src="{{ s }}bird.svg" alt="">
+</div>
 <header class="bhead">
   <div class="wrap">
     <img src="{{ '/assets/me.jpg' | relative_url }}" alt="">
@@ -28,26 +25,25 @@
       <a href="{{ '/' | relative_url }}">home</a>
       <a href="{{ '/blog/' | relative_url }}">blog</a>
       <a href="{{ '/blog/feed.xml' | relative_url }}">rss</a>
-      <button class="theme-btn" type="button" id="themeBtn" title="Switch theme"></button>
     </nav>
   </div>
 </header>
-<div class="hills" aria-hidden="true"></div>
 <main class="wrap">
 {{ content }}
 </main>
-<script>
-  (function () {
-    var root = document.documentElement, btn = document.getElementById('themeBtn');
-    function label() { btn.textContent = root.getAttribute('data-theme') === 'pixel' ? '◐ classic' : '▦ pixel'; }
-    btn.addEventListener('click', function () {
-      var next = root.getAttribute('data-theme') === 'pixel' ? 'classic' : 'pixel';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem('blog-theme', next); } catch (e) {}
-      label();
-    });
-    label();
-  })();
-</script>
+<!-- ground: a little pixel world at the bottom of the page (decorative) -->
+<footer class="scene" aria-hidden="true">
+  <img class="tree t1" src="{{ s }}tree.svg" alt="">
+  <img class="bush b1" src="{{ s }}bush.svg" alt="">
+  <img class="bunny" src="{{ s }}bunny.svg" alt="">
+  <img class="flower f1" src="{{ s }}flower.svg" alt="">
+  <img class="rock r1" src="{{ s }}rock.svg" alt="">
+  <img class="slime" src="{{ s }}slime.svg" alt="">
+  <img class="flower f2" src="{{ s }}flower.svg" alt="">
+  <img class="bush b2" src="{{ s }}bush.svg" alt="">
+  <img class="tree t2" src="{{ s }}tree.svg" alt="">
+  <img class="rock r2" src="{{ s }}rock.svg" alt="">
+  <div class="ground"></div>
+</footer>
 </body>
 </html>

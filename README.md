@@ -43,6 +43,6 @@ or, with a caption under the image:
 </figure>
 ```
 
-## Themes
+## Look
 
-The blog has two themes: **pixel** (the default retro 8-bit look) and **classic** (plain, like the home page). Visitors switch with the button in the top bar, and their choice is remembered.
+The blog is a simple white page with original pixel-art decorations: clouds and a bird drift across the sky, and a small pixel world (trees, rocks, bushes, flowers, a bunny and a slime) sits at the bottom of every page. The sprites are SVG files in `assets/blog/sprites/`, styled in `assets/blog.css`.
