@@ -8,14 +8,22 @@
 <link rel="stylesheet" href="{{ '/assets/blog.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 <link rel="alternate" type="application/atom+xml" title="Mustafa's blog" href="{{ '/blog/feed.xml' | relative_url }}">
 </head>
-<body>
+<body class="{% if page.layout == 'post' %}beach{% else %}meadow{% endif %}">
 {% assign s = '/assets/blog/sprites/' | relative_url %}
-<!-- sky: drifting clouds and a bird (decorative) -->
+<!-- sky (decorative) -->
 <div class="sky" aria-hidden="true">
+  {% if page.layout == 'post' %}
+  <img class="sun" src="{{ s }}sun.svg" alt="">
+  <img class="cloud c1" src="{{ s }}cloud.svg" alt="">
+  <img class="cloud c2" src="{{ s }}cloud.svg" alt="">
+  <img class="gull g1" src="{{ s }}gull.svg" alt="">
+  <img class="gull g2" src="{{ s }}gull.svg" alt="">
+  {% else %}
   <img class="cloud c1" src="{{ s }}cloud.svg" alt="">
   <img class="cloud c2" src="{{ s }}cloud.svg" alt="">
   <img class="cloud c3" src="{{ s }}cloud.svg" alt="">
   <img class="bird" src="{{ s }}bird.svg" alt="">
+  {% endif %}
 </div>
 <header class="bhead">
   <div class="wrap">
@@ -31,8 +39,19 @@
 <main class="wrap">
 {{ content }}
 </main>
-<!-- ground: a little pixel world at the bottom of the page (decorative) -->
+<!-- ground (decorative) -->
 <footer class="scene" aria-hidden="true">
+  {% if page.layout == 'post' %}
+  <img class="palm p1" src="{{ s }}palm.svg" alt="">
+  <img class="umbrella" src="{{ s }}umbrella.svg" alt="">
+  <img class="shell s1" src="{{ s }}shell.svg" alt="">
+  <img class="castle" src="{{ s }}castle.svg" alt="">
+  <img class="crab" src="{{ s }}crab.svg" alt="">
+  <img class="star" src="{{ s }}star.svg" alt="">
+  <img class="shell s2" src="{{ s }}shell.svg" alt="">
+  <img class="palm p2" src="{{ s }}palm.svg" alt="">
+  <div class="sea"></div>
+  {% else %}
   <img class="tree t1" src="{{ s }}tree.svg" alt="">
   <img class="bush b1" src="{{ s }}bush.svg" alt="">
   <img class="bunny" src="{{ s }}bunny.svg" alt="">
@@ -43,6 +62,7 @@
   <img class="bush b2" src="{{ s }}bush.svg" alt="">
   <img class="tree t2" src="{{ s }}tree.svg" alt="">
   <img class="rock r2" src="{{ s }}rock.svg" alt="">
+  {% endif %}
   <div class="ground"></div>
 </footer>
 </body>

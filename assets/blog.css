@@ -121,3 +121,52 @@ body { min-height: 100vh; display: flex; flex-direction: column; }
 .bhead { position: relative; z-index: 2; }
 main.wrap { flex: 1; width: 100%; }
 .scene { margin-top: 60px; flex: none; }
+
+/* =====================================================================
+   BEACH WORLD: post pages
+   ===================================================================== */
+body.beach { background: linear-gradient(#ffe9d2 0, #fff6ec 220px, #ffffff 460px) no-repeat, #fff; }
+.beach .sun { width: 84px; top: 70px; right: 6%; animation: spin 20s steps(8) infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.beach .c1 { top: 120px; }
+.beach .c2 { top: 50px; }
+.gull { width: 50px; animation: fly 32s linear infinite, bob 1s steps(2) infinite; }
+.g1 { top: 160px; animation-delay: -5s, 0s; }
+.g2 { top: 210px; width: 38px; animation-delay: -20s, -.5s; }
+
+.beach .scene .ground { background: #f2d49b; border-top: 6px solid #e3bd74; }
+.beach .scene .sea {
+  position: absolute; right: 0; bottom: 0; width: 34%; height: 42px; z-index: 1;
+  background:
+    linear-gradient(90deg, #ffffff 0 12px, transparent 12px 36px) 0 0 / 36px 6px repeat-x,
+    linear-gradient(#5bc0eb, #3a9bd5);
+  animation: waves 2s steps(6) infinite;
+}
+@keyframes waves { to { background-position: 36px 0, 0 0; } }
+.beach .scene img { bottom: 36px; }
+.p1 { left: 3%; width: 96px; }
+.umbrella { left: 15%; width: 84px; }
+.s1 { left: 25%; width: 30px; }
+.castle { left: 33%; width: 78px; }
+.crab { left: 50%; width: 54px; animation: scuttle 7s linear infinite alternate; }
+.star { left: 58%; width: 34px; }
+.s2 { left: 61%; width: 26px; }
+.p2 { left: 70%; width: 110px; z-index: 2; }
+@keyframes scuttle { from { left: 46%; } to { left: 56%; } }
+
+@media (max-width: 600px) {
+  .beach .sun { width: 60px; }
+  .umbrella, .s2 { display: none; }
+  .castle { left: 26%; width: 62px; } .p2 { left: 66%; width: 84px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .beach .sun, .gull, .crab, .beach .scene .sea { animation: none; }
+  .g1 { left: 20%; } .g2 { left: 35%; }
+}
+
+/* beach spacing tweaks: keep the right palm on the sand */
+.castle { left: 30%; }
+.crab { left: 42%; }
+@keyframes scuttle { from { left: 40%; } to { left: 48%; } }
+.star { left: 51%; } .s2 { left: 54.5%; } .p2 { left: 57%; }
+@media (max-width: 600px) { .p2 { left: 54%; } .star { left: 46%; } }
