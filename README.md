@@ -25,4 +25,24 @@ Your post starts here.
 
 4. Click **Commit changes**. The post appears at `/blog/` within a minute or two.
 
-Images go in `assets/` and are used like `![caption](/assets/my-image.png)`.
+## Adding images to a post
+
+1. Upload the image to the `assets/blog/` folder (**Add file → Upload files**), e.g. `assets/blog/query-plan.png`.
+2. In the post, use either of these:
+
+```
+![Query plan before the index](/assets/blog/query-plan.png)
+```
+
+or, with a caption under the image:
+
+```
+<figure>
+  <img src="/assets/blog/query-plan.png" alt="Query plan before the index">
+  <figcaption>The query plan before adding the composite index.</figcaption>
+</figure>
+```
+
+## Themes
+
+The blog has two themes: **pixel** (the default retro 8-bit look) and **classic** (plain, like the home page). Visitors switch with the button in the top bar, and their choice is remembered.

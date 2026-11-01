@@ -1,14 +1,25 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="pixel">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% if page.title %}{{ page.title }} | {% endif %}Mustafa's blog</title>
-<meta name="description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
+<meta name="description" content="{{ page.description | default: page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
+<script>
+  // Remember the visitor's theme choice (pixel is the default)
+  try {
+    var t = localStorage.getItem('blog-theme');
+    if (t === 'classic' || t === 'pixel') document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ '/assets/blog.css' | relative_url }}">
 <link rel="alternate" type="application/atom+xml" title="Mustafa's blog" href="{{ '/blog/feed.xml' | relative_url }}">
 </head>
 <body>
+<div class="sky" aria-hidden="true"></div>
 <header class="bhead">
   <div class="wrap">
     <img src="{{ '/assets/me.jpg' | relative_url }}" alt="">
@@ -17,11 +28,26 @@
       <a href="{{ '/' | relative_url }}">home</a>
       <a href="{{ '/blog/' | relative_url }}">blog</a>
       <a href="{{ '/blog/feed.xml' | relative_url }}">rss</a>
+      <button class="theme-btn" type="button" id="themeBtn" title="Switch theme"></button>
     </nav>
   </div>
 </header>
+<div class="hills" aria-hidden="true"></div>
 <main class="wrap">
 {{ content }}
 </main>
+<script>
+  (function () {
+    var root = document.documentElement, btn = document.getElementById('themeBtn');
+    function label() { btn.textContent = root.getAttribute('data-theme') === 'pixel' ? '◐ classic' : '▦ pixel'; }
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'pixel' ? 'classic' : 'pixel';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('blog-theme', next); } catch (e) {}
+      label();
+    });
+    label();
+  })();
+</script>
 </body>
 </html>

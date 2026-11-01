@@ -1,3 +1,5 @@
+---
+---
 <!doctype html>
 <html lang="en">
 <head>
@@ -118,6 +120,8 @@
   .pub-title { display: inline; }
   .pub-venue { display: inline; color: #009900; margin-left: 4px; }
   .pub-authors { color: #666; }
+  a.pub-title { color: #0000ee; }
+  .more { margin-top: 14px; font-size: 15px; }
 
   .misc ul { padding-left: 22px; }
   .misc li { margin-bottom: 6px; }
@@ -285,40 +289,19 @@
   </div>
 </div>
 
-<!-- ================= ENGINEERING HIGHLIGHTS ================= -->
+<!-- ================= BLOG (latest 5 posts, filled in by Jekyll) ================= -->
 <div class="container">
-  <div class="ctitle">engineering highlights</div>
-
+  <div class="ctitle">blog</div>
+  {% for post in site.posts limit:5 %}
   <div class="pub">
-    <div class="pub-title">Bulk-resolve API with HTTP 207 Multi-Status and per-ticket savepoints</div>
-    <div class="pub-venue">ETEPS</div>
-    <div class="pub-authors">Django · DRF · PostgreSQL transactions</div>
+    <a class="pub-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    <div class="pub-venue">{{ post.date | date: "%b %Y" }}</div>
+    {% if post.description %}<div class="pub-authors">{{ post.description }}</div>{% endif %}
   </div>
-  <div class="pub">
-    <div class="pub-title">SLA deadline engine: precomputed deadlines, updated at write time</div>
-    <div class="pub-venue">ETEPS</div>
-    <div class="pub-authors">Django · Celery · PostgreSQL</div>
-  </div>
-  <div class="pub">
-    <div class="pub-title">Ticket-list latency fix from EXPLAIN ANALYZE plans and a composite index</div>
-    <div class="pub-venue">ETEPS</div>
-    <div class="pub-authors">PostgreSQL query-plan tuning</div>
-  </div>
-  <div class="pub">
-    <div class="pub-title">Serial-number corruption bug traced to deferred fields in bulk_update</div>
-    <div class="pub-venue">Warehouse</div>
-    <div class="pub-authors">Django ORM</div>
-  </div>
-  <div class="pub">
-    <div class="pub-title">SQL Server inventory sync unstuck at 134K of 221K records; SQL injection and N+1 removed</div>
-    <div class="pub-venue">ERP</div>
-    <div class="pub-authors">BAAN/Infor · pyodbc · Celery</div>
-  </div>
-  <div class="pub">
-    <div class="pub-title">Cross-database serial matching and duplicate cleanup tooling</div>
-    <div class="pub-venue">Data</div>
-    <div class="pub-authors">pandas</div>
-  </div>
+  {% else %}
+  <div class="pub-authors">No posts yet.</div>
+  {% endfor %}
+  <div class="more"><a href="blog/">show more →</a></div>
 </div>
 
 <!-- ================= MISC ================= -->
