@@ -4,676 +4,440 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Mustafa Mohammed Ali</title>
-<meta name="description" content="Mustafa Mohammed Ali, backend engineer in Cairo building high-scale Django systems in production.">
-<meta name="theme-color" content="#0C3B2A">
+<meta name="description" content="Mustafa Mohammed Ali, backend engineer building high-scale Django systems in production.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Mustafa Mohammed Ali | Backend Engineer">
 <meta property="og:description" content="Backend engineer building high-scale Django systems in production: ticketing and SLA, ERP integrations, bulk data, PostgreSQL tuning.">
 <meta property="og:url" content="https://0mustafa37.github.io/">
 <meta property="og:image" content="https://0mustafa37.github.io/assets/me.jpg">
 <meta name="twitter:card" content="summary">
-<link rel="alternate" type="application/atom+xml" title="Blog" href="blog/feed.xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --forest: #0C3B2A;
-    --pine: #082A1E;
-    --paper: #F2F5F1;
-    --surface: #FFFFFF;
-    --ink: #13221B;
-    --muted: #56675E;
-    --rule: #D3DDD6;
-    --signal: #F4C542;
-    --link: #0C5A3E;
-    --good: #1D7A4E;
-    --bad: #C4472F;
-    --on-dark: #E6EFE9;
-    --on-dark-muted: #9DB8AA;
-
-    --sans: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
-    --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-    --gutter: clamp(16px, 4vw, 48px);
-    --max: 1180px;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --paper: #0E1813;
-      --surface: #14211A;
-      --ink: #E3EBE6;
-      --muted: #93A79B;
-      --rule: #26372E;
-      --link: #8FD3AE;
-      --good: #7FD1A4;
-      --bad: #F08B73;
-      --forest: #0A3324;
-      --pine: #06231A;
-    }
-  }
-
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body {
-    margin: 0; background: var(--paper); color: var(--ink);
-    font: 400 17px/1.6 var(--sans); font-stretch: 100%;
-    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #333;
+    background: #fff;
   }
-  img { max-width: 100%; display: block; }
-  a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
-  a:hover { text-decoration-thickness: 2px; }
-  :focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 2px; }
-  code { font-family: var(--mono); font-size: .88em; }
-  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
-  .print-only { display: none; }
-  .skip { position: absolute; left: -9999px; }
-  .skip:focus { left: 16px; top: 16px; z-index: 5; background: var(--signal); color: #13221B; padding: 8px 12px; }
+  a { color: #0000ee; }
+  hr { border: 0; border-top: 1px solid #ccc; margin: 20px 0; }
 
-  /* ================= HERO ================= */
-  .hero { background: var(--forest); color: var(--on-dark); position: relative; overflow: hidden; }
-  .hero::before { /* faint graph-paper grid behind the plan */
-    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
-    background-image:
-      linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
-    background-size: 32px 32px;
-  }
-  .hero .wrap {
-    position: relative; min-height: min(100svh, 880px);
-    display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-    gap: clamp(32px, 5vw, 72px); align-items: center;
-    padding-top: 72px; padding-bottom: 72px;
-  }
-  .hero-text { container-type: inline-size; }
-  .who { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
-  .who img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,.18); }
-  .who span { color: var(--on-dark-muted); font-size: 15px; line-height: 1.35; }
-  .name {
-    margin: 0; font-weight: 820; font-stretch: 125%;
-    font-size: clamp(38px, 13.2cqi, 104px); line-height: .92; letter-spacing: -.02em;
-    color: #fff;
-  }
-  .name span { display: block; }
-  .name span + span { color: var(--signal); }
-  .lede {
-    margin: 28px 0 0; max-width: 30ch;
-    font-size: clamp(19px, 1.9vw, 24px); line-height: 1.4; color: var(--on-dark);
-  }
-  .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 11px 18px; border-radius: 999px; font-weight: 600; font-size: 15px;
-    text-decoration: none; color: var(--on-dark); border: 1px solid rgba(255,255,255,.28);
-    transition: background-color .2s, border-color .2s, color .2s;
-  }
-  .btn:hover { border-color: #fff; background: rgba(255,255,255,.06); }
-  .btn.primary { background: var(--signal); color: #13221B; border-color: var(--signal); }
-  .btn.primary:hover { background: #ffd65e; }
-  .btn svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .container { margin: 20px auto 0; padding: 0 15px; }
+  @media (min-width: 992px) { .container { width: 970px; } }
+  .row { display: grid; grid-template-columns: repeat(12, 1fr); }
 
-  /* the query plan */
-  .plan {
-    margin: 0; background: var(--pine); border-radius: 14px; border: 1px solid rgba(255,255,255,.08);
-    box-shadow: 0 40px 80px -40px rgba(0,0,0,.6);
-    font: 400 13.5px/1.75 var(--mono); color: var(--on-dark-muted);
-    overflow: hidden;
+  /* ---------- header ---------- */
+  #dhead { margin-top: 40px; }
+  #dpic { grid-column: span 4; }
+  #ddesc { grid-column: span 8; padding-top: 50px; }
+  .ppic {
+    width: 240px; height: 240px; border-radius: 120px; object-fit: cover; display: block;
   }
-  .plan-bar { display: flex; gap: 7px; padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,.07); }
-  .plan-bar i { width: 11px; height: 11px; border-radius: 50%; background: rgba(255,255,255,.14); }
-  .plan pre { margin: 0; padding: 18px 20px 22px; white-space: pre; overflow-x: auto; font: inherit; }
-  .plan .l { display: block; min-height: 1.75em; }
-  .plan .cmd { color: #fff; }
-  .plan .prompt { color: var(--signal); }
-  .plan .hd { opacity: .7; }
-  .plan .node {
-    color: #fff; text-decoration: none;
-    background-image: linear-gradient(var(--signal), var(--signal)); background-size: 0 1px; background-repeat: no-repeat; background-position: 0 100%;
-    transition: background-size .25s, color .2s;
+  .ppic-ph {
+    width: 240px; height: 240px; border-radius: 120px; position: relative; overflow: hidden;
+    background: #ddd; color: #888; font-size: 72px; display: inline-grid; place-items: center;
   }
-  .plan .node:hover, .plan .node:focus-visible { color: var(--signal); background-size: 100% 1px; }
-  .plan .arrow, .plan .done { color: var(--signal); }
-  .plan .k { color: #9fd8b9; }
-  .caret { display: inline-block; width: .6em; height: 1.1em; vertical-align: -3px; background: var(--signal); animation: blink 1.1s steps(1) infinite; }
+  .ppic-ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  h1 { font-size: 34px; font-weight: 400; margin: 0; }
+  h2 { font-size: 18px; font-weight: 400; font-style: italic; color: #999; margin: 5px 0 10px; }
+  @media (min-width: 992px) { h2 { max-width: 560px; } }
+  .iicons { display: flex; gap: 6px; flex-wrap: wrap; }
+  .iico {
+    width: 40px; height: 40px; border-radius: 50%; background: #333;
+    display: inline-grid; place-items: center;
+  }
+  .iico:hover { background: #555; }
+  .iico svg { width: 22px; height: 22px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  @media (max-width: 991px) {
+    #dpic { grid-column: span 12; text-align: center; }
+    #dpic .ppic-ph { margin: 0 auto; }
+    #ddesc { grid-column: span 12; padding-top: 20px; text-align: center; }
+    h2 { margin-left: auto; margin-right: auto; }
+    .iicons { justify-content: center; }
+  }
+
+  /* ---------- timeline ---------- */
+  .entry { margin: 0; }
+  .timespan {
+    grid-column: span 1; text-align: right; padding-right: 5px;
+    font-size: 14px; color: #bbb; line-height: 1.4;
+  }
+  .ico { grid-column: span 1; border-left: 1.6px solid #cfcfcf; position: relative; }
+  .entry-dot {
+    position: absolute; left: -7.5px; top: 2px;
+    width: 13px; height: 13px; border-radius: 7px;
+    background: #cfcfcf; border: 1.6px solid #fff;
+  }
+  .logo {
+    position: relative; margin-left: 10px; width: 56px; height: 56px; border-radius: 5px; overflow: hidden;
+    background: #f1f1f1; color: #999; font-size: 14px; font-weight: 700;
+    display: grid; place-items: center;
+  }
+  .logo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #fff; }
+  .desc { grid-column: span 10; font-size: 17px; padding: 0 0 20px 20px; }
+  .desc ul { margin: 12px 0; padding-left: 40px; }
+  .desc li { margin-bottom: 4px; }
+  @media (max-width: 767px) {
+    .entry { grid-template-columns: 46px 58px 1fr; }
+    .timespan, .ico, .desc { grid-column: auto; }
+    .timespan { font-size: 12px; }
+    .desc { font-size: 16px; padding-left: 4px; }
+    .logo { width: 44px; height: 44px; font-size: 12px; }
+    .desc ul { padding-left: 20px; }
+  }
+
+  /* ---------- section titles ---------- */
+  .ctitle { font-size: 36px; margin: 40px 0 20px; }
+
+  /* ---------- gray band of cards ---------- */
+  .band { background: #eee; padding: 1px 0 10px; margin-top: 40px; }
+  .band .ctitle { margin-top: 30px; }
+  .cards { gap: 10px; padding-bottom: 30px; }
+  .card { grid-column: span 4; background: #fff; border-radius: 3px; padding: 5px 5px 10px; }
+  .card a { text-decoration: none; color: inherit; }
+  .ccimg {
+    position: relative; width: 100%; aspect-ratio: 3 / 2; border-radius: 5px; overflow: hidden;
+    background: #ddd; color: #888; display: grid; place-items: center; font-size: 20px;
+  }
+  .ccimg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .cdesc { font-size: 16px; padding: 8px 4px 0; }
+  .cdesc b { font-weight: 600; }
+  .cstack { font-size: 13px; color: #999; padding: 2px 4px 0; }
+  @media (max-width: 991px) { .card { grid-column: span 6; } .cards { gap: 5px; } }
+  @media (max-width: 560px) { .card { grid-column: span 12; } }
+
+  /* ---------- projects (floated thumbnail) ---------- */
+  .project { margin: 0 0 10px; padding: 0 0 10px; }
+  .project::after { content: ""; display: block; clear: both; }
+  .pico {
+    float: left; margin: 0 10px 0 0; position: relative; width: 82px; height: 82px;
+    border-radius: 5px; overflow: hidden; background: #eee; color: #999;
+    display: grid; place-items: center; font-weight: 700;
+  }
+  .pico img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+  /* ---------- highlights list (pub style) ---------- */
+  .pub { border-left: 4px solid #aaa; padding: 2px 0 2px 10px; margin: 0 0 10px; font-size: 14px; }
+  .pub-title { display: inline; }
+  .pub-venue { display: inline; color: #009900; margin-left: 4px; }
+  .pub-authors { color: #666; }
+  a.pub-title { color: #0000ee; }
+  .more { margin-top: 14px; font-size: 15px; }
+
+  .misc ul { padding-left: 22px; }
+  .misc li { margin-bottom: 6px; }
+
+  /* ---------- animation ---------- */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  @keyframes popIn { 0% { opacity: 0; transform: scale(.4); } 70% { transform: scale(1.12); } 100% { opacity: 1; transform: none; } }
+  @keyframes picIn { from { opacity: 0; transform: scale(.85) rotate(-6deg); } to { opacity: 1; transform: none; } }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(0,153,0,.55); } 70% { box-shadow: 0 0 0 10px rgba(0,153,0,0); } 100% { box-shadow: 0 0 0 0 rgba(0,153,0,0); } }
+  @keyframes wave { 0%, 60%, 100% { transform: rotate(0); } 10%, 30% { transform: rotate(14deg); } 20%, 40% { transform: rotate(-8deg); } }
   @keyframes blink { 50% { opacity: 0; } }
-  .plan figcaption { padding: 0 20px 16px; font: 13px/1.4 var(--sans); color: var(--on-dark-muted); }
+  @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* the one orchestrated moment: hero text rises, then the plan prints line by line */
-  .js .hero .rise { opacity: 0; transform: translateY(14px); }
-  .js.ready .hero .rise { opacity: 1; transform: none; transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0s); }
-  .js .plan .l { visibility: hidden; }
-  .js .plan .l.on { visibility: visible; }
+  .ppic-ph { animation: picIn .8s cubic-bezier(.2,.8,.2,1) both; transition: transform .4s, box-shadow .4s; }
+  .ppic-ph:hover { transform: scale(1.04) rotate(2deg); box-shadow: 0 10px 30px rgba(0,0,0,.18); }
+  #ddesc h1 { animation: fadeUp .7s .15s both; }
+  #ddesc h2 { animation: fadeUp .7s .3s both; }
+  .emo { display: inline-block; }
+  .emo:nth-child(1) { animation: spin 6s linear infinite; }
+  .emo:nth-child(2) { animation: wave 2.6s ease-in-out infinite; transform-origin: 50% 80%; }
+  .emo:nth-child(3) { animation: wave 2.6s .4s ease-in-out infinite; transform-origin: 50% 100%; }
+  .caret { display: inline-block; width: 2px; height: 1em; margin-left: 2px; vertical-align: -2px; background: #999; animation: blink 1s steps(1) infinite; }
+  .iico { animation: popIn .5s both; transition: background .2s, transform .25s cubic-bezier(.3,1.6,.5,1); }
+  .iico:nth-child(1) { animation-delay: .45s; } .iico:nth-child(2) { animation-delay: .52s; }
+  .iico:nth-child(3) { animation-delay: .59s; } .iico:nth-child(4) { animation-delay: .66s; }
+  .iico:nth-child(5) { animation-delay: .73s; }
+  .iico:hover { transform: translateY(-4px) rotate(-8deg) scale(1.08); }
 
-  /* ================= BODY SECTIONS ================= */
-  section { padding: clamp(64px, 9vw, 120px) 0 0; }
-  .sec { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 32px; }
-  .sec-h { margin: 0; font-weight: 400; font-size: 15px; line-height: 1.45; color: var(--muted); padding-top: 6px; }
-  .sec-h b { display: block; color: var(--ink); font-size: 26px; line-height: 1.2; font-stretch: 112%; font-weight: 780; letter-spacing: -.01em; margin-bottom: 8px; }
-  .sec-h .sticky { display: block; position: sticky; top: 28px; }
+  /* current job dot pulses */
+  .entry.now .entry-dot { background: #009900; animation: pulse 2s infinite; }
+  .entry-dot { transition: transform .3s, background .3s; }
+  .entry:hover .entry-dot { transform: scale(1.35); background: #888; }
+  .entry.now:hover .entry-dot { background: #009900; }
+  .logo { transition: transform .3s; }
+  .entry:hover .logo { transform: scale(1.08) rotate(-3deg); }
+  .desc li { transition: transform .2s, color .2s; }
+  .desc li:hover { transform: translateX(4px); color: #000; }
 
-  /* about */
-  .intro p {
-    margin: 0; font-size: clamp(22px, 2.6vw, 32px); line-height: 1.35; font-weight: 420; letter-spacing: -.005em;
-    max-width: 34ch; text-wrap: pretty;
+  /* section titles get a growing underline */
+  .ctitle { position: relative; display: inline-block; }
+  .ctitle::after {
+    content: ""; position: absolute; left: 0; bottom: -4px; height: 3px; width: 100%;
+    background: #0000ee; transform: scaleX(0); transform-origin: left; transition: transform .7s .2s cubic-bezier(.2,.8,.2,1);
   }
-  .intro p + p { margin-top: .9em; font-size: 18px; line-height: 1.6; color: var(--muted); max-width: 60ch; font-weight: 400; }
-  .facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 48px 0 0; padding: 0; list-style: none; max-width: 760px; }
-  .facts li { border-top: 2px solid var(--ink); padding-top: 12px; color: var(--muted); font-size: 15px; line-height: 1.45; }
-  .facts strong { display: block; color: var(--ink); font-weight: 780; font-stretch: 118%; font-size: 30px; line-height: 1.1; margin-bottom: 4px; }
+  .ctitle.in::after, .no-js .ctitle::after { transform: scaleX(.35); }
+  .ctitle:hover::after { transform: scaleX(1); }
 
-  /* built: each piece of work next to the artifact that shows it */
-  .built { list-style: none; margin: 0; padding: 0; }
-  .work { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; padding: 40px 0; border-top: 1px solid var(--rule); align-items: start; }
-  .work:first-child { border-top: 0; padding-top: 0; }
-  .work h3 { margin: 0 0 10px; font-size: 23px; line-height: 1.25; font-weight: 720; font-stretch: 106%; letter-spacing: -.005em; text-wrap: balance; }
-  .work p { margin: 0; color: var(--muted); max-width: 52ch; }
-  .work p.where { margin-top: 14px; font-size: 14px; }
-  .art {
-    margin: 0; background: var(--surface); border: 1px solid var(--rule); border-radius: 10px;
-    padding: 18px 20px; font: 400 13px/1.7 var(--mono); color: var(--muted);
-    overflow-x: auto; white-space: pre;
-  }
-  .art .ok { color: var(--good); } .art .no { color: var(--bad); } .art .hi { color: var(--ink); font-weight: 500; }
-  .art .gone { text-decoration: line-through; text-decoration-color: var(--bad); }
+  /* cards lift, images zoom */
+  .card { transition: transform .3s, box-shadow .3s; }
+  .card:hover { transform: translateY(-6px); box-shadow: 0 12px 24px rgba(0,0,0,.12); }
+  .ccimg img, .pico img { transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+  .card:hover .ccimg img, .project:hover .pico img { transform: scale(1.08); }
+  .pub { transition: border-color .3s, transform .3s, background .3s; }
+  .pub:hover { border-color: #009900; transform: translateX(4px); background: #fafafa; }
+  .more a { display: inline-block; transition: transform .2s; }
+  .more a:hover { transform: translateX(6px); }
 
-  /* the sync story */
-  .art.sync { white-space: normal; font-family: var(--sans); font-size: 14px; }
-  .sync-top { display: flex; justify-content: space-between; gap: 12px; font: 13px var(--mono); color: var(--ink); font-variant-numeric: tabular-nums; }
-  .track { height: 12px; border-radius: 6px; background: var(--rule); margin: 12px 0 10px; position: relative; overflow: hidden; }
-  .fill { position: absolute; inset: 0 auto 0 0; width: 100%; background: var(--good); border-radius: inherit; }
-  .stall { position: absolute; top: 0; bottom: 0; left: 60.6%; width: 2px; background: var(--bad); opacity: 0; }
-  .sync-msg { min-height: 1.5em; color: var(--muted); }
-  .sync.failed .fill { background: var(--bad); }
-  .sync.failed .stall { opacity: 1; }
-  .replay {
-    margin-top: 12px; font: 600 13px var(--sans); color: var(--ink); background: none; cursor: pointer;
-    border: 1px solid var(--rule); border-radius: 999px; padding: 6px 14px;
-  }
-  .replay:hover { border-color: var(--ink); }
-  .replay:disabled { opacity: .5; cursor: default; }
-  .no-js .replay { display: none; }
+  /* scroll reveal (only when JS is running) */
+  .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1); transition-delay: var(--d, 0s); }
+  .js .reveal.in { opacity: 1; transform: none; }
 
-  /* experience */
-  .xp { list-style: none; margin: 0; padding: 0; position: relative; }
-  .xp::before { content: ""; position: absolute; left: 115px; top: 10px; bottom: 10px; width: 2px; background: var(--rule); }
-  .job { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 0 40px; padding-bottom: 48px; position: relative; scroll-margin-top: 24px; }
-  .job:last-child { padding-bottom: 0; }
-  .job::before { content: ""; position: absolute; left: 109px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: var(--paper); border: 2px solid var(--muted); }
-  .job.now::before { background: var(--signal); border-color: var(--ink); }
-  .when { font-size: 14px; color: var(--muted); padding-top: 2px; font-variant-numeric: tabular-nums; }
-  .org { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
-  .org img { width: 36px; height: 36px; border-radius: 8px; object-fit: contain; background: #fff; border: 1px solid var(--rule); }
-  .org span { font-size: 15px; color: var(--muted); }
-  .role { margin: 0; font-size: 22px; line-height: 1.3; font-weight: 720; font-stretch: 106%; }
-  .role span { transition: background-color .5s; border-radius: 3px; }
-  .job:target .role span { background: color-mix(in srgb, var(--signal) 40%, transparent); }
-  .job p { margin: 10px 0 0; max-width: 62ch; }
-  .job ul { margin: 12px 0 0; padding-left: 20px; max-width: 62ch; }
-  .job li { margin-bottom: 6px; }
-  .job li::marker { color: var(--muted); }
-
-  /* projects */
-  .projects { display: grid; gap: 64px; }
-  .proj { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px; align-items: center; scroll-margin-top: 24px; }
-  .proj:nth-child(even) .shot { order: 2; }
-  .shot { border-radius: 12px; overflow: hidden; border: 1px solid var(--rule); background: var(--surface); aspect-ratio: 3 / 2; }
-  .shot img { width: 100%; height: 100%; object-fit: cover; }
-  .proj h3 { margin: 0; font-size: 32px; line-height: 1.1; font-weight: 800; font-stretch: 118%; letter-spacing: -.01em; }
-  .proj .what { margin: 8px 0 14px; font-size: 18px; }
-  .proj p { margin: 0; color: var(--muted); max-width: 46ch; }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0 0; padding: 0; list-style: none; }
-  .tags li { font-size: 13px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--rule); color: var(--muted); }
-  .status { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); margin-top: 16px; }
-  .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
-  .status.live::before { background: #1D9A5E; box-shadow: 0 0 0 3px color-mix(in srgb, #1D9A5E 25%, transparent); }
-  .status.wip::before { background: var(--signal); }
-
-  /* stack */
-  .stack { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
-  .stack h3 { margin: 0 0 12px; font-size: 16px; font-weight: 700; }
-  .stack ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
-  .stack li { font-size: 15px; padding: 5px 12px; border-radius: 6px; background: var(--surface); border: 1px solid var(--rule); }
-  .stack .core li { border-color: var(--ink); font-weight: 600; }
-  .langs { margin: 32px 0 0; color: var(--muted); }
-
-  /* writing */
-  .posts { list-style: none; margin: 0; padding: 0; }
-  .posts li { border-top: 1px solid var(--rule); }
-  .posts li:last-child { border-bottom: 1px solid var(--rule); }
-  .posts a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 24px; padding: 22px 0; text-decoration: none; color: var(--ink); }
-  .posts .pt { font-size: 20px; font-weight: 680; line-height: 1.3; text-wrap: balance; }
-  .posts a:hover .pt { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
-  .posts .pd { font-size: 14px; color: var(--muted); white-space: nowrap; padding-top: 4px; }
-  .posts .px { grid-column: 1; color: var(--muted); font-size: 16px; }
-  .all { display: inline-block; margin-top: 20px; font-weight: 600; }
-
-  /* contact */
-  .contact { margin-top: clamp(80px, 10vw, 140px); background: var(--forest); color: var(--on-dark); padding: clamp(64px, 9vw, 112px) 0 40px; }
-  .ask { margin: 0; font-size: clamp(20px, 2vw, 24px); color: var(--on-dark-muted); max-width: 36ch; }
-  .mail {
-    display: inline-block; margin: 14px 0 0; color: #fff; text-decoration: none;
-    font-weight: 800; font-stretch: 118%; font-size: clamp(24px, 5.2vw, 70px); line-height: 1.1; letter-spacing: -.015em;
-    overflow-wrap: anywhere;
-    background-image: linear-gradient(var(--signal), var(--signal)); background-size: 100% 4px; background-repeat: no-repeat; background-position: 0 100%;
-    padding-bottom: 6px; transition: color .2s;
-  }
-  .mail:hover { color: var(--signal); }
-  .contact .actions { margin-top: 40px; }
-  .foot { display: flex; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; margin-top: 88px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.12); font-size: 14px; color: var(--on-dark-muted); }
-
-  /* ================= RESPONSIVE ================= */
-  @media (max-width: 980px) {
-    .hero .wrap { grid-template-columns: 1fr; min-height: 0; padding-top: 48px; padding-bottom: 56px; }
-    .sec { grid-template-columns: 1fr; gap: 20px; }
-    .sec-h .sticky { position: static; }
-    .work { grid-template-columns: 1fr; gap: 20px; }
-    .proj { grid-template-columns: 1fr; gap: 20px; }
-    .proj:nth-child(even) .shot { order: 0; }
-    .stack { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 600px) {
-    body { font-size: 16px; }
-    .plan { font-size: 11px; }
-    .plan pre { padding: 14px; }
-    .facts { grid-template-columns: 1fr; gap: 16px; }
-    .stack { grid-template-columns: 1fr; }
-    .xp::before { left: 6px; }
-    .job { grid-template-columns: 1fr; padding-left: 32px; }
-    .job::before { left: 0; }
-    .when { margin-bottom: 6px; }
-    .posts a { grid-template-columns: 1fr; }
-    .posts .pd { padding: 0; order: -1; }
-  }
+  /* scroll progress bar */
+  #progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #0000ee; transform: scaleX(0); transform-origin: left; z-index: 10; }
 
   @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
     *, *::before, *::after { animation: none !important; transition: none !important; }
-    .js .hero .rise { opacity: 1; transform: none; }
-    .js .plan .l { visibility: visible; }
-  }
-
-  /* ================= PRINT: a clean paper CV ================= */
-  @media print {
-    @page { margin: 14mm; }
-    :root { --paper: #fff; --surface: #fff; --ink: #000; --muted: #333; --rule: #bbb; --link: #000; }
-    body { font-size: 10.5pt; line-height: 1.45; background: #fff; }
-    .hero, .contact { background: #fff; color: #000; }
-    .hero::before, .plan, .actions, .skip, .shot, .art, .facts, #writing, .ask, .foot, .who img, .sec-h .sticky > span { display: none !important; }
-    .js .hero .rise { opacity: 1; transform: none; }
-    .wrap, .hero .wrap { padding: 0; }
-    .hero .wrap { display: block; min-height: 0; }
-    .contact { display: none !important; }
-    .work p.where { margin-top: 3pt; font-size: 9.5pt; }
-    .who { margin-bottom: 6pt; }
-    .who span, .lede { color: #000; }
-    .name, .name span + span { color: #000; font-size: 28pt; }
-    .lede { max-width: none; font-size: 12pt; margin-top: 8pt; }
-    section { padding-top: 14pt; }
-    .sec { grid-template-columns: 1fr; gap: 4pt; }
-    .sec-h b { font-size: 14pt; margin: 0; }
-    .print-only { display: block; margin-top: 6pt; font-size: 10pt; }
-    .intro p, .intro p + p { font-size: 10.5pt; line-height: 1.45; max-width: none; color: #000; margin-top: 4pt; }
-    .stack { grid-template-columns: repeat(3, 1fr); gap: 10pt; }
-    .stack h3 { font-size: 10.5pt; margin-bottom: 2pt; }
-    .stack ul { display: block; }
-    .stack li, .stack .core li { display: inline; padding: 0; border: 0; background: none; font-weight: 400; font-size: 10pt; }
-    .stack li + li::before { content: ", "; }
-    .tags { display: none; }
-    .langs { margin-top: 6pt; color: #000; }
-    .work { grid-template-columns: 1fr; padding: 6pt 0; gap: 0; border: 0; break-inside: avoid; }
-    .work h3, .role, .proj h3 { font-size: 11.5pt; }
-    .work p, .proj p, .intro p + p { color: #000; max-width: none; }
-    .xp::before, .job::before { display: none; }
-    .job { grid-template-columns: 70pt 1fr; gap: 0 12pt; padding: 0 0 10pt; break-inside: avoid; }
-    .org img { display: none; }
-    .projects { gap: 8pt; }
-    .proj { display: block; break-inside: avoid; }
-    .proj .what { margin: 0 0 2pt; font-size: 10.5pt; }
-    .tags, .status { margin-top: 4pt; }
-    .contact { margin-top: 14pt; padding: 0; }
-    .mail { color: #000; font-size: 12pt; background: none; padding: 0; }
-    a { text-decoration: none; }
+    .js .reveal { opacity: 1; transform: none; }
+    .ctitle::after { transform: scaleX(.35); }
+    .caret { display: none; }
   }
 </style>
 </head>
 <body class="no-js">
-<a class="skip" href="#main">Skip to content</a>
+<div id="progress"></div>
 
-<!-- ================= HERO ================= -->
-<header class="hero">
-  <div class="wrap">
-    <div class="hero-text">
-      <div class="who rise" style="--d:.05s">
-        <img src="assets/me.jpg" alt="" width="64" height="64">
-        <span>Backend engineer<br>Cairo, Egypt</span>
-      </div>
-      <h1 class="name rise" style="--d:.15s"><span>Mustafa</span><span>Mohammed Ali</span></h1>
-      <p class="lede rise" style="--d:.3s">I build Django systems that hold up in production, and I read the query plan before I guess.</p>
-      <p class="print-only">mabdelaal474@gmail.com, linkedin.com/in/0xmustafa37, github.com/0Mustafa37, 0mustafa37.github.io</p>
-      <div class="actions rise" style="--d:.45s">
-        <a class="btn primary" href="mailto:mabdelaal474@gmail.com">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg>Email me
+<!-- ================= HEADER ================= -->
+<div class="container" id="dhead">
+  <div class="row">
+    <div id="dpic">
+      <!-- Your photo: assets/me.jpg -->
+      <div class="ppic-ph">MA<img src="assets/me.jpg" alt="Mustafa Mohammed Ali" onerror="this.remove()"></div>
+    </div>
+    <div id="ddesc">
+      <h1>Mustafa Mohammed Ali</h1>
+      <h2><span id="tagline">I build backend systems that hold up in production</span><span class="caret"></span> <span class="emo">⚙️</span><span class="emo">🐍</span><span class="emo">📦</span></h2>
+      <div class="iicons">
+        
+        <a class="iico" href="https://github.com/0Mustafa37" title="GitHub">
+          <svg viewBox="0 0 24 24"><polyline points="8 6 2 12 8 18"/><polyline points="16 6 22 12 16 18"/></svg>
         </a>
-        <a class="btn" href="assets/Mustafa_Mohammed_Ali_CV.pdf" download>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><polyline points="7 10 12 15 17 10"/><path d="M5 21h14"/></svg>Download CV
+        <a class="iico" href="https://www.linkedin.com/in/0xmustafa37/" title="LinkedIn">
+          <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
         </a>
-        <a class="btn" href="https://github.com/0Mustafa37">GitHub</a>
-        <a class="btn" href="https://www.linkedin.com/in/0xmustafa37/">LinkedIn</a>
+        <a class="iico" href="blog/" title="Blog">
+          <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+        </a>
+        <a class="iico" href="mailto:mabdelaal474@gmail.com" title="Email">
+          <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg>
+        </a>
+        <a class="iico" href="assets/Mustafa_Mohammed_Ali_CV.pdf" title="CV (PDF)">
+          <svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><polyline points="14 3 14 8 19 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+        </a>
       </div>
     </div>
-
-    <figure class="plan rise" style="--d:.5s" aria-label="My career written as a PostgreSQL query plan. Each node links to its section below.">
-      <div class="plan-bar" aria-hidden="true"><i></i><i></i><i></i></div>
-<pre><span class="l"><span class="prompt">mustafa=#</span> <span class="cmd">EXPLAIN ANALYZE SELECT * FROM career;</span></span><span class="l hd">                     QUERY PLAN</span><span class="l hd">───────────────────────────────────────────────</span><span class="l"> <a class="node" href="#experience">Append</a>  (actual years=4+ loops=daily)</span><span class="l">   <span class="arrow">-&gt;</span>  <a class="node" href="#holouly">Index Scan on holouly</a>  (2022..now)</span><span class="l">         <span class="k">Role:</span> <a class="node" href="#holouly">Mid-level Backend Developer</a></span><span class="l">         <span class="k">Role:</span> <a class="node" href="#holouly-junior">Junior Backend Developer</a></span><span class="l">         <span class="k">Owns:</span> <a class="node" href="#built">ETEPS, Mdawm</a>  (2 live B2B platforms)</span><span class="l">   <span class="arrow">-&gt;</span>  <a class="node" href="#ivalley">Seq Scan on ivalley</a>  (2021..2022)</span><span class="l">         <span class="k">Role:</span> Full Stack Developer intern</span><span class="l">   <span class="arrow">-&gt;</span>  <a class="node" href="#ainshams">Seq Scan on ain_shams</a>  (2020..2024)</span><span class="l">         <span class="k">Degree:</span> B.Sc. Computer Science</span><span class="l"> <span class="k">Side projects:</span> <a class="node" href="#projects">tanzim, booclair, dress_me_up</a></span><span class="l"> <span class="k">Execution Time:</span> <span class="done">still running</span> <span class="caret" aria-hidden="true"></span></span></pre>
-      <figcaption>Each node is a link. Pick one to jump to it.</figcaption>
-    </figure>
   </div>
-</header>
+</div>
 
-<main id="main">
+<hr>
 
-<!-- ================= ABOUT ================= -->
-<section class="intro" aria-labelledby="about-h">
-  <div class="wrap sec">
-    <h2 class="sec-h" id="about-h"><span class="sticky"><b>About</b></span></h2>
-    <div>
-      <p>I own backend modules end to end on two live B2B platforms, from ticketing and SLA lifecycles to warehouse serial tracking, ERP integrations and bulk data.</p>
-      <p>I'm a backend engineer in Cairo with 4+ years building high-scale Django systems. I tune queries from execution plans, design service layers that keep views thin, and mentor the interns on my team.</p>
-      <ul class="facts">
-        <li><strong>4+ years</strong>building and running Django in production</li>
-        <li><strong>2 platforms</strong>live B2B systems I own modules on today</li>
-        <li><strong>25% lower</strong>API response times after my query and ORM work</li>
+<!-- ================= TIMELINE ================= -->
+<div class="container" id="history">
+
+  <div class="entry row now">
+    <div class="timespan">2023 -</div>
+    <div class="ico">
+      <div class="entry-dot"></div>
+      <!-- Company logo: assets/holouly.jpg -->
+      <div class="logo">HIS<img src="assets/holouly.jpg" alt="Holouly" onerror="this.remove()"></div>
+    </div>
+    <div class="desc">
+      I'm a <b>Mid-level Backend Developer</b> at <a href="https://www.linkedin.com/company/holouly-it/home/">Holouly Innovative Solutions</a> in Cairo, where I own backend modules on two live B2B platforms built on Django, DRF, PostgreSQL, Redis and Celery: <b>ETEPS</b> (field service management: ticketing, SLA, inventory, ERP integration) and <b>Mdawm</b> (attendance, live tracking, violation monitoring, CRM integration). Some things I've built and fixed:
+      <ul>
+        <li>Refactored the ticket-closing flow into a service layer with named domain exceptions and thin views.</li>
+        <li>A bulk-resolve API returning HTTP 207 Multi-Status, with per-ticket savepoints so one failure never rolls back the batch.</li>
+        <li>An SLA deadline engine that precomputes deadlines and updates them at write time.</li>
+        <li>Cut ticket-list latency by reading <code>EXPLAIN ANALYZE</code> plans, adding a missing composite index and fixing <code>work_mem</code> issues.</li>
+        <li>Maintain the BAAN/Infor ERP integration and a SQL Server inventory sync; fixed a timeout that stalled sync at ~134K of 221K records.</li>
       </ul>
+      I also mentor our interns and wrote the Django internship training plan and onboarding roadmap.
     </div>
   </div>
-</section>
 
-<!-- ================= WHAT I'VE BUILT ================= -->
-<section id="built" aria-labelledby="built-h">
-  <div class="wrap sec">
-    <h2 class="sec-h" id="built-h"><span class="sticky"><b>What I've built</b><span>The work I'd walk you through in an interview, with the detail that made it work.</span></span></h2>
-    <ol class="built">
-
-      <li class="work">
-        <div>
-          <h3>A bulk-resolve API where one bad ticket can't fail the batch</h3>
-          <p>Agents close dozens of tickets at once. The first version wrapped the whole batch in one transaction, so a single conflict rolled everything back. I gave each ticket its own savepoint and return HTTP 207 Multi-Status, so the agent sees exactly which tickets went through and which need another look.</p>
-          <p class="where">ETEPS, Django and PostgreSQL. <a href="blog/2026/11/01/bulk-api-207-multi-status-savepoints/">Read the write-up</a></p>
-        </div>
-<pre class="art" aria-label="Example of a 207 Multi-Status response"><span class="hi">HTTP/1.1 207 Multi-Status</span>
-
-[
-  { "ticket": 1, "status": <span class="ok">200</span> },
-  { "ticket": 2, "status": <span class="ok">200</span> },
-  { "ticket": 3, "status": <span class="no">409</span>,
-    "error": "already_closed" },
-  { "ticket": 4, "status": <span class="ok">200</span> }
-]</pre>
-      </li>
-
-      <li class="work">
-        <div>
-          <h3>Faster ticket lists, found in the execution plan</h3>
-          <p>Instead of guessing, I read the <code>EXPLAIN ANALYZE</code> plans. They pointed to a missing composite index and to steps that didn't fit in <code>work_mem</code>. Fixing both cut the ticket-list latency.</p>
-          <p class="where">ETEPS, PostgreSQL</p>
-        </div>
-<pre class="art" aria-label="Illustration of the query plan before and after the fix"><span class="gone">Seq Scan on tickets</span>
-<span class="gone">Sort Method: external merge  Disk</span>
-
-<span class="hi">Index Scan using tickets_composite_idx</span>
-<span class="hi">Sort Method: quicksort  Memory</span></pre>
-      </li>
-
-      <li class="work">
-        <div>
-          <h3>An ERP sync that runs to the end</h3>
-          <p>I maintain the BAAN/Infor ERP integration and a SQL Server inventory sync. The sync kept stalling at around 134K of 221K records because of a timeout. I tracked it down and fixed it, and the sync now completes.</p>
-          <p class="where">ETEPS, BAAN/Infor ERP and SQL Server</p>
-        </div>
-        <div class="art sync" id="sync" role="group" aria-label="Inventory sync: it used to stall at about 134,000 of 221,000 records. It now completes.">
-          <div class="sync-top"><span>inventory_sync</span><span><span id="sync-n">221,000</span> / 221,000</span></div>
-          <div class="track" aria-hidden="true"><div class="fill" id="sync-fill"></div><div class="stall"></div></div>
-          <div class="sync-msg" id="sync-msg" aria-live="polite">Completed. All records synced.</div>
-          <button class="replay" type="button" id="sync-replay">Replay the fix</button>
-        </div>
-      </li>
-
-      <li class="work">
-        <div>
-          <h3>SLA deadlines computed at write time</h3>
-          <p>I built an SLA deadline engine that precomputes each ticket's deadline and updates it when the ticket changes. Lists can sort and filter by deadline without working it out on every read.</p>
-          <p class="where">ETEPS, Django and PostgreSQL</p>
-        </div>
-<pre class="art" aria-label="Where SLA deadlines are computed"><span class="gone">on read:  compute the deadline for every row</span>
-
-<span class="hi">on write: ticket.sla_deadline = compute()</span>
-<span class="hi">on read:  ... ORDER BY sla_deadline</span></pre>
-      </li>
-
-      <li class="work">
-        <div>
-          <h3>A ticket-closing flow you can read in one sitting</h3>
-          <p>I refactored ticket closing into a service layer with named domain exceptions and thin views. Each rule lives in one place, each failure has a name, and the views only turn results into responses.</p>
-          <p class="where">ETEPS, Django and DRF</p>
-        </div>
-<pre class="art" aria-label="Sketch of a thin view calling the service layer">try:
-    <span class="hi">close_ticket(ticket, by=request.user)</span>
-except <span class="no">TicketAlreadyClosed</span>:
-    return conflict()
-except <span class="no">MissingResolution</span>:
-    return bad_request()</pre>
-      </li>
-
-    </ol>
-  </div>
-</section>
-
-<!-- ================= EXPERIENCE ================= -->
-<section id="experience" aria-labelledby="xp-h">
-  <div class="wrap sec">
-    <h2 class="sec-h" id="xp-h"><span class="sticky"><b>Experience</b><span>Where I've worked and studied, newest first.</span></span></h2>
-    <ol class="xp">
-      <li class="job now" id="holouly">
-        <div class="when">2023 – now</div>
-        <div>
-          <div class="org"><img src="assets/holouly.jpg" alt=""><span><a href="https://www.linkedin.com/company/holouly-it/home/">Holouly Innovative Solutions</a>, Cairo</span></div>
-          <h3 class="role"><span>Mid-level Backend Developer</span></h3>
-          <p>I own backend modules on two live B2B platforms built on Django, DRF, PostgreSQL, Redis and Celery:</p>
-          <ul>
-            <li><b>ETEPS</b>, field service management: ticketing, SLA, inventory and ERP integration.</li>
-            <li><b>Mdawm</b>: attendance, live tracking, violation monitoring and CRM integration.</li>
-            <li>I mentor our interns, and wrote the Django internship training plan and onboarding roadmap.</li>
-          </ul>
-        </div>
-      </li>
-      <li class="job" id="holouly-junior">
-        <div class="when">2022 – 2023</div>
-        <div>
-          <div class="org"><img src="assets/holouly.jpg" alt=""><span>Holouly Innovative Solutions, Cairo</span></div>
-          <h3 class="role"><span>Junior Backend Developer</span></h3>
-          <p>Built and optimized APIs with the Django ORM, raw SQL and PostgreSQL, and cut response times by 25%. Contributed to the backend architecture with a focus on security and scalability.</p>
-        </div>
-      </li>
-      <li class="job" id="ivalley">
-        <div class="when">2021 – 2022</div>
-        <div>
-          <div class="org"><img src="assets/ivalley.jpg" alt=""><span>iValley</span></div>
-          <h3 class="role"><span>Full Stack Developer intern</span></h3>
-          <p>Worked with ASP.NET MVC, the .NET Framework and Microsoft SQL Server.</p>
-        </div>
-      </li>
-      <li class="job" id="ainshams">
-        <div class="when">2020 – 2024</div>
-        <div>
-          <div class="org"><img src="assets/ainshams.jpg" alt=""><span>Ain Shams University, Cairo</span></div>
-          <h3 class="role"><span>B.Sc. in Computer Science</span></h3>
-          <p>Scientific Computing. My graduation project was <a href="#dressmeup">Dress Me Up</a>, a fashion recommender built on YOLOv8 and VGG19.</p>
-        </div>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<!-- ================= PROJECTS ================= -->
-<section id="projects" aria-labelledby="proj-h">
-  <div class="wrap sec">
-    <h2 class="sec-h" id="proj-h"><span class="sticky"><b>Projects</b><span>Things I've built outside my day job.</span></span></h2>
-    <div class="projects">
-      <article class="proj" id="tanzim">
-        <div class="shot"><img src="assets/tanzim.jpg" alt="Tanzim dashboard" loading="lazy" width="1200" height="800"></div>
-        <div>
-          <h3>Tanzim</h3>
-          <div class="what">A multi-tenant enterprise SaaS platform</div>
-          <p>I'm building it on my own. The Django and DRF backend is complete, and the React frontend is in progress.</p>
-          <ul class="tags"><li>Django</li><li>DRF</li><li>React</li><li>Multi-tenancy</li></ul>
-          <div class="status wip">Backend complete, frontend in progress</div>
-        </div>
-      </article>
-      <article class="proj" id="booclair">
-        <div class="shot"><img src="assets/booclair.jpg" alt="Booclair video meeting with chat" loading="lazy" width="1200" height="800"></div>
-        <div>
-          <h3>Booclair</h3>
-          <div class="what">Chat and video meetings for book clubs</div>
-          <p>Brings book clubs online with real-time chat and video meetings, with a Flutter app on top.</p>
-          <ul class="tags"><li>Node.js</li><li>Socket.IO</li><li>WebRTC</li><li>Flutter</li></ul>
-          <div class="status live">Live</div>
-        </div>
-      </article>
-      <article class="proj" id="dressmeup">
-        <div class="shot"><img src="assets/dressmeup.jpg" alt="Dress Me Up app screens" loading="lazy" width="1200" height="800"></div>
-        <div>
-          <h3>Dress Me Up</h3>
-          <div class="what">An AI fashion recommender</div>
-          <p>My graduation project. It detects clothing items with YOLOv8, extracts VGG19 features and recommends matching pieces by cosine similarity, served by a Flask backend to a Flutter app.</p>
-          <ul class="tags"><li>YOLOv8</li><li>VGG19</li><li>Flask</li><li>Flutter</li></ul>
-          <div class="status">Graduation project</div>
-        </div>
-      </article>
+  <div class="entry row">
+    <div class="timespan">2022 - 2023</div>
+    <div class="ico">
+      <div class="entry-dot"></div>
+      <div class="logo">HIS<img src="assets/holouly.jpg" alt="Holouly" onerror="this.remove()"></div>
+    </div>
+    <div class="desc">
+      I joined Holouly as a <b>Junior Backend Developer</b>, building and optimizing APIs with the Django ORM, raw SQL and PostgreSQL, and cut response times by 25%. Along the way I contributed to the backend architecture with a focus on security and scalability.
     </div>
   </div>
-</section>
 
-<!-- ================= STACK ================= -->
-<section id="stack" aria-labelledby="stack-h">
-  <div class="wrap sec">
-    <h2 class="sec-h" id="stack-h"><span class="sticky"><b>Stack</b><span>What I reach for.</span></span></h2>
-    <div>
-      <div class="stack">
-        <div class="core">
-          <h3>Every day</h3>
-          <ul><li>Python</li><li>Django</li><li>DRF</li><li>PostgreSQL</li><li>Redis</li><li>Celery</li></ul>
-        </div>
-        <div>
-          <h3>Infrastructure</h3>
-          <ul><li>Docker</li><li>AWS</li><li>Nginx</li><li>CI/CD</li><li>SQL Server</li><li>RabbitMQ</li></ul>
-        </div>
-        <div>
-          <h3>Also</h3>
-          <ul><li>Flask</li><li>Node.js</li><li>WebSockets</li><li>Socket.IO</li><li>PyTorch</li><li>scikit-learn</li><li>NLTK</li></ul>
-        </div>
+  <div class="entry row">
+    <div class="timespan">2021 - 2022</div>
+    <div class="ico">
+      <div class="entry-dot"></div>
+      <div class="logo">iV<img src="assets/ivalley.jpg" alt="iValley" onerror="this.remove()"></div>
+    </div>
+    <div class="desc">
+      <b>Full Stack Developer intern</b> at iValley, where I picked up ASP.NET MVC, the .NET Framework and Microsoft SQL Server.
+    </div>
+  </div>
+
+  <div class="entry row">
+    <div class="timespan">2020 - 2024</div>
+    <div class="ico">
+      <div class="entry-dot"></div>
+      <!-- University logo: assets/ainshams.jpg -->
+      <div class="logo">ASU<img src="assets/ainshams.jpg" alt="Ain Shams University" onerror="this.remove()"></div>
+    </div>
+    <div class="desc">
+      <b>B.Sc. in Computer Science</b> (Scientific Computing) at Ain Shams University. My graduation project was <a href="#dressmeup">Dress Me Up</a>, a fashion recommender built on YOLOv8 and VGG19 with a Flask backend and a Flutter app.
+    </div>
+  </div>
+
+</div>
+
+<!-- ================= BIO ================= -->
+<div class="container">
+  <div class="ctitle">bio</div>
+  <div>
+    Mustafa Mohammed Ali is a backend engineer based in Cairo with 4+ years building and running high-scale Django systems in production. He owns complex modules end to end on two live B2B enterprise platforms, from ticketing and SLA lifecycles to warehouse serial tracking, ERP integrations and bulk data operations. He tunes queries from execution plans, designs service layers, and mentors interns.
+  </div>
+</div>
+
+<!-- ================= FEATURED PROJECTS (gray band) ================= -->
+<div class="band">
+  <div class="container">
+    <div class="ctitle">featured projects</div>
+    <div class="row cards">
+      <div class="card">
+        <a href="#">
+          <!-- Screenshot: assets/tanzim.jpg -->
+          <div class="ccimg">Tanzim<img src="assets/tanzim.jpg" alt="Tanzim" onerror="this.remove()"></div>
+          <div class="cdesc"><b>Tanzim</b>: multi-tenant enterprise SaaS platform</div>
+          <div class="cstack">Django · DRF · React</div>
+        </a>
       </div>
-      <p class="langs">I speak Arabic (native) and English (professional).</p>
+      <div class="card">
+        <a href="#">
+          <!-- Screenshot: assets/booclair.jpg -->
+          <div class="ccimg">Booclair<img src="assets/booclair.jpg" alt="Booclair" onerror="this.remove()"></div>
+          <div class="cdesc"><b>Booclair</b>: chat and video meetings for book clubs</div>
+          <div class="cstack">Node.js · Flutter · Socket.IO · WebRTC</div>
+        </a>
+      </div>
+      <div class="card" id="dressmeup">
+        <a href="#">
+          <!-- Screenshot: assets/dressmeup.jpg -->
+          <div class="ccimg">Dress Me Up<img src="assets/dressmeup.jpg" alt="Dress Me Up" onerror="this.remove()"></div>
+          <div class="cdesc"><b>Dress Me Up</b>: AI fashion recommender</div>
+          <div class="cstack">YOLOv8 · VGG19 · Flask · Flutter</div>
+        </a>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ================= WRITING (latest posts, filled in by Jekyll) ================= -->
-<section id="writing" aria-labelledby="writing-h">
-  <div class="wrap sec">
-    <h2 class="sec-h" id="writing-h"><span class="sticky"><b>Writing</b><span>Notes on backend engineering and the bugs that only show up in production.</span></span></h2>
-    <div>
-      <ul class="posts">
-        {% for post in site.posts limit:5 %}
-        <li><a href="{{ post.url | relative_url }}">
-          <span class="pt">{{ post.title }}</span>
-          <span class="pd">{{ post.date | date: "%b %Y" }}</span>
-          {% if post.description %}<span class="px">{{ post.description }}</span>{% endif %}
-        </a></li>
-        {% endfor %}
-      </ul>
-      <a class="all" href="blog/">All posts</a>
+<!-- ================= PROJECTS (detailed) ================= -->
+<div class="container">
+  <div class="ctitle">projects</div>
+
+  <div class="project">
+    <div class="pico">T<img src="assets/tanzim.jpg" alt="" onerror="this.remove()"></div>
+    <div class="pdesc">
+      <a href="#">Tanzim</a> is a multi-tenant enterprise SaaS platform I'm building on my own. The backend (Django + DRF) is complete, and the React frontend is in progress.
     </div>
   </div>
-</section>
 
-</main>
-
-<!-- ================= CONTACT ================= -->
-<footer class="contact" id="contact">
-  <div class="wrap">
-    <p class="ask">Hiring for a backend role, or have a system that needs to hold up? Write to me.</p>
-    <a class="mail" href="mailto:mabdelaal474@gmail.com">mabdelaal474@gmail.com</a>
-    <div class="actions">
-      <a class="btn primary" href="assets/Mustafa_Mohammed_Ali_CV.pdf" download>Download CV (PDF)</a>
-      <a class="btn" href="https://www.linkedin.com/in/0xmustafa37/">LinkedIn</a>
-      <a class="btn" href="https://github.com/0Mustafa37">GitHub</a>
-      <a class="btn" href="blog/">Blog</a>
-    </div>
-    <div class="foot">
-      <span>Mustafa Mohammed Ali, Cairo</span>
-      <span>One static HTML file, no frameworks. Print this page to get a paper CV.</span>
+  <div class="project">
+    <div class="pico">B<img src="assets/booclair.jpg" alt="" onerror="this.remove()"></div>
+    <div class="pdesc">
+      <a href="#">Booclair</a> brings book clubs online with real-time chat and video meetings, built on Node.js, Socket.IO and WebRTC with a Flutter app. It's live.
     </div>
   </div>
-</footer>
 
+  <div class="project">
+    <div class="pico">D<img src="assets/dressmeup.jpg" alt="" onerror="this.remove()"></div>
+    <div class="pdesc">
+      <a href="#">Dress Me Up</a> was my graduation project: it detects clothing items with YOLOv8, extracts VGG19 features and recommends matching pieces using cosine similarity, served by a Flask backend to a Flutter app.
+    </div>
+  </div>
+</div>
+
+<!-- ================= BLOG (latest 5 posts, filled in by Jekyll) ================= -->
+<div class="container">
+  <div class="ctitle">blog</div>
+  {% for post in site.posts limit:5 %}
+  <div class="pub">
+    <a class="pub-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    <div class="pub-venue">{{ post.date | date: "%b %Y" }}</div>
+    {% if post.description %}<div class="pub-authors">{{ post.description }}</div>{% endif %}
+  </div>
+  {% else %}
+  <div class="pub-authors">No posts yet.</div>
+  {% endfor %}
+  <div class="more"><a href="blog/">show more →</a></div>
+</div>
+
+<!-- ================= MISC ================= -->
+<div class="container misc">
+  <div class="ctitle">misc unsorted</div>
+  <ul>
+    <li>Stack I use daily: Python, Django, DRF, PostgreSQL, Redis, Celery, Docker, AWS, Nginx and CI/CD.</li>
+    <li>I also work with Flask, Node.js, RabbitMQ, WebSockets and Socket.IO, and on the ML side PyTorch, scikit-learn and NLTK.</li>
+    <li>I wrote a Django internship training plan and onboarding roadmap for the interns I mentor.</li>
+    <li>I speak Arabic (native) and English (professional).</li>
+    <li>I write about backend engineering on my <a href="blog/">blog</a>.</li>
+    <li>Reach me at <a href="mailto:mabdelaal474@gmail.com">mabdelaal474@gmail.com</a>.</li>
+    <li>No frameworks were harmed in the making of this site. I've grown allergic to <a href="https://motherfuckingwebsite.com/">500-pound websites</a>, so it's just one static HTML file with plain CSS and a pinch of vanilla JS for the motion.</li>
+  </ul>
+</div>
+
+<br><br><br><br><br>
 <script>
 (function () {
-  var root = document.body;
-  root.classList.remove('no-js'); root.classList.add('js');
+  var b = document.body;
+  b.classList.remove('no-js'); b.classList.add('js');
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---- hero: text rises, then the plan prints like psql ---- */
-  var lines = document.querySelectorAll('.plan .l');
-  function showAll() { for (var j = 0; j < lines.length; j++) lines[j].classList.add('on'); }
-  if (reduce) { root.classList.add('ready'); showAll(); }
-  else {
-    requestAnimationFrame(function () { requestAnimationFrame(function () { root.classList.add('ready'); }); });
-    var i = 0;
-    setTimeout(function next() {
-      if (i >= lines.length) return;
-      lines[i].classList.add('on');
-      var wait = i === 0 ? 700 : 95; // the query "runs" for a moment before the plan comes back
-      i++; setTimeout(next, wait);
-    }, 1000);
+  // typewriter tagline
+  var t = document.getElementById('tagline');
+  if (t && !reduce) {
+    var full = t.textContent, i = 0;
+    t.textContent = '';
+    setTimeout(function step() {
+      t.textContent = full.slice(0, ++i);
+      if (i < full.length) setTimeout(step, 28 + Math.random() * 40);
+    }, 500);
   }
-  window.addEventListener('beforeprint', showAll);
 
-  /* ---- the ERP sync story ---- */
-  var box = document.getElementById('sync'), fill = document.getElementById('sync-fill'),
-      n = document.getElementById('sync-n'), msg = document.getElementById('sync-msg'),
-      btn = document.getElementById('sync-replay');
-  var TOTAL = 221000, STALL = 134000, raf = 0, pause = 0;
-  if (reduce) { btn.hidden = true; return; }
-  function setP(v) { fill.style.width = (v / TOTAL * 100) + '%'; n.textContent = Math.round(v).toLocaleString('en-US'); }
-  function run(to, ms, done) {
-    var t0 = performance.now();
-    cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(function tick(t) {
-      var k = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - k, 2);
-      setP(to * e);
-      if (k < 1) raf = requestAnimationFrame(tick); else done();
+  // scroll reveal, staggered within each group
+  var groups = [
+    ['#history .entry'], ['.ctitle'], ['.card'], ['.project'], ['.pub'], ['.misc li'], ['.container > div:not(.ctitle):not(.row)']
+  ];
+  groups.forEach(function (g) {
+    document.querySelectorAll(g[0]).forEach(function (el, k) {
+      if (el.classList.contains('reveal')) return;
+      el.classList.add('reveal');
+      el.style.setProperty('--d', (k % 6) * 0.08 + 's');
     });
-  }
-  function play() {
-    cancelAnimationFrame(raf); clearTimeout(pause);
-    box.classList.remove('failed'); btn.disabled = true;
-    msg.textContent = 'Before the fix: syncing…'; setP(0);
-    run(STALL, 1700, function () {
-      box.classList.add('failed'); msg.textContent = 'Timed out at about 134K records.';
-      pause = setTimeout(function () {
-        box.classList.remove('failed'); msg.textContent = 'After the fix: syncing…'; setP(0);
-        run(TOTAL, 2100, function () { msg.textContent = 'Completed. All records synced.'; btn.disabled = false; });
-      }, 1600);
-    });
-  }
-  btn.addEventListener('click', play);
-  if ('IntersectionObserver' in window) {
+  });
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window) || reduce) {
+    els.forEach(function (el) { el.classList.add('in'); });
+  } else {
     var io = new IntersectionObserver(function (es) {
-      if (es[0].isIntersecting) { io.disconnect(); play(); }
-    }, { threshold: 0.6 });
-    io.observe(box);
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function (el) { io.observe(el); });
   }
+
+  // scroll progress bar
+  var bar = document.getElementById('progress');
+  function onScroll() {
+    var h = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = 'scaleX(' + (h > 0 ? scrollY / h : 0) + ')';
+  }
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
 })();
 </script>
 </body>
