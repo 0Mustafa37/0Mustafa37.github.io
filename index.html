@@ -131,9 +131,77 @@
 
   .misc ul { padding-left: 22px; }
   .misc li { margin-bottom: 6px; }
+
+  /* ---------- animation ---------- */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  @keyframes popIn { 0% { opacity: 0; transform: scale(.4); } 70% { transform: scale(1.12); } 100% { opacity: 1; transform: none; } }
+  @keyframes picIn { from { opacity: 0; transform: scale(.85) rotate(-6deg); } to { opacity: 1; transform: none; } }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(0,153,0,.55); } 70% { box-shadow: 0 0 0 10px rgba(0,153,0,0); } 100% { box-shadow: 0 0 0 0 rgba(0,153,0,0); } }
+  @keyframes wave { 0%, 60%, 100% { transform: rotate(0); } 10%, 30% { transform: rotate(14deg); } 20%, 40% { transform: rotate(-8deg); } }
+  @keyframes blink { 50% { opacity: 0; } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .ppic-ph { animation: picIn .8s cubic-bezier(.2,.8,.2,1) both; transition: transform .4s, box-shadow .4s; }
+  .ppic-ph:hover { transform: scale(1.04) rotate(2deg); box-shadow: 0 10px 30px rgba(0,0,0,.18); }
+  #ddesc h1 { animation: fadeUp .7s .15s both; }
+  #ddesc h2 { animation: fadeUp .7s .3s both; }
+  .emo { display: inline-block; }
+  .emo:nth-child(1) { animation: spin 6s linear infinite; }
+  .emo:nth-child(2) { animation: wave 2.6s ease-in-out infinite; transform-origin: 50% 80%; }
+  .emo:nth-child(3) { animation: wave 2.6s .4s ease-in-out infinite; transform-origin: 50% 100%; }
+  .caret { display: inline-block; width: 2px; height: 1em; margin-left: 2px; vertical-align: -2px; background: #999; animation: blink 1s steps(1) infinite; }
+  .iico { animation: popIn .5s both; transition: background .2s, transform .25s cubic-bezier(.3,1.6,.5,1); }
+  .iico:nth-child(1) { animation-delay: .45s; } .iico:nth-child(2) { animation-delay: .52s; }
+  .iico:nth-child(3) { animation-delay: .59s; } .iico:nth-child(4) { animation-delay: .66s; }
+  .iico:nth-child(5) { animation-delay: .73s; }
+  .iico:hover { transform: translateY(-4px) rotate(-8deg) scale(1.08); }
+
+  /* current job dot pulses */
+  .entry.now .entry-dot { background: #009900; animation: pulse 2s infinite; }
+  .entry-dot { transition: transform .3s, background .3s; }
+  .entry:hover .entry-dot { transform: scale(1.35); background: #888; }
+  .entry.now:hover .entry-dot { background: #009900; }
+  .logo { transition: transform .3s; }
+  .entry:hover .logo { transform: scale(1.08) rotate(-3deg); }
+  .desc li { transition: transform .2s, color .2s; }
+  .desc li:hover { transform: translateX(4px); color: #000; }
+
+  /* section titles get a growing underline */
+  .ctitle { position: relative; display: inline-block; }
+  .ctitle::after {
+    content: ""; position: absolute; left: 0; bottom: -4px; height: 3px; width: 100%;
+    background: #0000ee; transform: scaleX(0); transform-origin: left; transition: transform .7s .2s cubic-bezier(.2,.8,.2,1);
+  }
+  .ctitle.in::after, .no-js .ctitle::after { transform: scaleX(.35); }
+  .ctitle:hover::after { transform: scaleX(1); }
+
+  /* cards lift, images zoom */
+  .card { transition: transform .3s, box-shadow .3s; }
+  .card:hover { transform: translateY(-6px); box-shadow: 0 12px 24px rgba(0,0,0,.12); }
+  .ccimg img, .pico img { transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+  .card:hover .ccimg img, .project:hover .pico img { transform: scale(1.08); }
+  .pub { transition: border-color .3s, transform .3s, background .3s; }
+  .pub:hover { border-color: #009900; transform: translateX(4px); background: #fafafa; }
+  .more a { display: inline-block; transition: transform .2s; }
+  .more a:hover { transform: translateX(6px); }
+
+  /* scroll reveal (only when JS is running) */
+  .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1); transition-delay: var(--d, 0s); }
+  .js .reveal.in { opacity: 1; transform: none; }
+
+  /* scroll progress bar */
+  #progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #0000ee; transform: scaleX(0); transform-origin: left; z-index: 10; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .js .reveal { opacity: 1; transform: none; }
+    .ctitle::after { transform: scaleX(.35); }
+    .caret { display: none; }
+  }
 </style>
 </head>
-<body>
+<body class="no-js">
+<div id="progress"></div>
 
 <!-- ================= HEADER ================= -->
 <div class="container" id="dhead">
@@ -144,7 +212,7 @@
     </div>
     <div id="ddesc">
       <h1>Mustafa Mohammed Ali</h1>
-      <h2>I build backend systems that hold up in production ⚙️🐍📦</h2>
+      <h2><span id="tagline">I build backend systems that hold up in production</span><span class="caret"></span> <span class="emo">⚙️</span><span class="emo">🐍</span><span class="emo">📦</span></h2>
       <div class="iicons">
         
         <a class="iico" href="https://github.com/0Mustafa37" title="GitHub">
@@ -172,7 +240,7 @@
 <!-- ================= TIMELINE ================= -->
 <div class="container" id="history">
 
-  <div class="entry row">
+  <div class="entry row now">
     <div class="timespan">2023 -</div>
     <div class="ico">
       <div class="entry-dot"></div>
@@ -320,10 +388,57 @@
     <li>I speak Arabic (native) and English (professional).</li>
     <li>I write about backend engineering on my <a href="blog/">blog</a>.</li>
     <li>Reach me at <a href="mailto:mabdelaal474@gmail.com">mabdelaal474@gmail.com</a>.</li>
-    <li>No frameworks were harmed in the making of this site. I've grown allergic to <a href="https://motherfuckingwebsite.com/">500-pound websites</a>, so it's just one static HTML file with plain CSS.</li>
+    <li>No frameworks were harmed in the making of this site. I've grown allergic to <a href="https://motherfuckingwebsite.com/">500-pound websites</a>, so it's just one static HTML file with plain CSS and a pinch of vanilla JS for the motion.</li>
   </ul>
 </div>
 
 <br><br><br><br><br>
+<script>
+(function () {
+  var b = document.body;
+  b.classList.remove('no-js'); b.classList.add('js');
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // typewriter tagline
+  var t = document.getElementById('tagline');
+  if (t && !reduce) {
+    var full = t.textContent, i = 0;
+    t.textContent = '';
+    setTimeout(function step() {
+      t.textContent = full.slice(0, ++i);
+      if (i < full.length) setTimeout(step, 28 + Math.random() * 40);
+    }, 500);
+  }
+
+  // scroll reveal, staggered within each group
+  var groups = [
+    ['#history .entry'], ['.ctitle'], ['.card'], ['.project'], ['.pub'], ['.misc li'], ['.container > div:not(.ctitle):not(.row)']
+  ];
+  groups.forEach(function (g) {
+    document.querySelectorAll(g[0]).forEach(function (el, k) {
+      if (el.classList.contains('reveal')) return;
+      el.classList.add('reveal');
+      el.style.setProperty('--d', (k % 6) * 0.08 + 's');
+    });
+  });
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window) || reduce) {
+    els.forEach(function (el) { el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  }
+
+  // scroll progress bar
+  var bar = document.getElementById('progress');
+  function onScroll() {
+    var h = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = 'scaleX(' + (h > 0 ? scrollY / h : 0) + ')';
+  }
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+})();
+</script>
 </body>
 </html>
