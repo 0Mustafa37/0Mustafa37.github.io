@@ -2,7 +2,7 @@
 
 Personal website and blog of Mustafa Mohammed Ali, served by GitHub Pages.
 
-- `index.html` is the home page (plain HTML and CSS).
+- `index.html` is the home page: one HTML file with inline CSS and a small vanilla script. The hero shows the career as a PostgreSQL `EXPLAIN ANALYZE` plan whose nodes link to each section. Printing the page (Ctrl/Cmd+P) gives a clean paper CV.
 - `blog/` is the blog index, built by Jekyll.
 - `_posts/` holds the blog posts, one Markdown file each.
 
