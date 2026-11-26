@@ -98,7 +98,7 @@
   .band { background: #eee; padding: 1px 0 10px; margin-top: 40px; }
   .band .ctitle { margin-top: 30px; }
   .cards { gap: 10px; padding-bottom: 30px; }
-  .card { grid-column: span 4; background: #fff; border-radius: 3px; padding: 5px 5px 10px; }
+  .card { grid-column: span 3; background: #fff; border-radius: 3px; padding: 5px 5px 10px; }
   .card a { text-decoration: none; color: inherit; }
   .ccimg {
     position: relative; width: 100%; aspect-ratio: 3 / 2; border-radius: 5px; overflow: hidden;
@@ -310,6 +310,13 @@
     <div class="ctitle">featured projects</div>
     <div class="row cards">
       <div class="card">
+        <a href="https://0mustafa37.github.io/learningdesgin/">
+          <div class="ccimg">Backend Atlas<img src="assets/backend-atlas.jpg" alt="Backend Atlas: a 3D walkthrough of a circuit breaker" onerror="this.remove()"></div>
+          <div class="cdesc"><b>Backend Atlas</b>: 3D system-design walkthroughs</div>
+          <div class="cstack">three.js · JavaScript · no build step</div>
+        </a>
+      </div>
+      <div class="card">
         <a href="#">
           <!-- Screenshot: assets/tanzim.jpg -->
           <div class="ccimg">Tanzim<img src="assets/tanzim.jpg" alt="Tanzim" onerror="this.remove()"></div>
@@ -340,6 +347,13 @@
 <!-- ================= PROJECTS (detailed) ================= -->
 <div class="container">
   <div class="ctitle">projects</div>
+
+  <div class="project">
+    <div class="pico">A<img src="assets/backend-atlas.jpg" alt="" onerror="this.remove()"></div>
+    <div class="pdesc">
+      <a href="https://0mustafa37.github.io/learningdesgin/">Backend Atlas</a> is an interview-prep site where backend systems run as animated 3D models: over 100 walkthroughs from caching and sharding to incident response and disaster recovery, each with a live trace, real numbers and code. It includes a timed practice mode. Built with three.js and no build step (<a href="https://github.com/0Mustafa37/learningdesgin">source</a>, <a href="/blog/2026/11/26/backend-atlas-3d-engine/">how it works</a>).
+    </div>
+  </div>
 
   <div class="project">
     <div class="pico">T<img src="assets/tanzim.jpg" alt="" onerror="this.remove()"></div>
